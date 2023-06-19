@@ -10,10 +10,15 @@ jobs:
     permissions:
       contents: write
     steps:
+      - name: Create gh-pages build
+        run: |
+          mkdir build && \
+          cp index.html fabian.css build/
+
       - name: Upload pages artifact
         uses: actions/upload-pages-artifact@v1
         with:
-          path: ./
+          path: build/
 
   deploy:
     runs-on: ubuntu-latest
